@@ -4,6 +4,12 @@ Clonar o projeto
 Rodar `npm install`
 Rodar `npm start` o servidor ficará disponível na porta 3001 no endereço http://localhost:3001
 
+## Banco de dados
+
+Criar database com o nome desejado;
+Configurar o acesso do banco no arquivo `src/mysql.js`;
+Para popular o banco de dados basta rodar o comando `npm run fetch-db`
+
 ## Rotas
 
 #### bus-lines
