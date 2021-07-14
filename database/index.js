@@ -37,13 +37,13 @@ const populateDB = async () => {
       if (err) {
         throw err;
       }
-      console.log("Inserido com sucesso");
+      console.log("success");
     });
   });
   mysql.end();
 };
 
-const populateDB2 = async () => {
+const populateDBItineraries = async () => {
   const mysqlPromise = mysql.promise();
 
   const [rows, fields] = await mysqlPromise.query("SELECT * FROM busLines");
@@ -59,7 +59,7 @@ const populateDB2 = async () => {
 
       const itineraries = (({ idLinha, nome, codigo, ...o }) => o)(
         itinerariesInfo
-      ); // remove b and c
+      );
 
       const sql =
         "INSERT INTO itineraries (idlinha, nome, codigo, itineraries) VALUES (?,?,?,?)";
@@ -76,7 +76,7 @@ const populateDB2 = async () => {
           if (err) {
             throw err;
           }
-          console.log("Inserido com sucesso");
+          console.log("success");
         }
       );
     }, 1000);
@@ -86,5 +86,5 @@ const populateDB2 = async () => {
 
 createBusLinesTable();
 createItinerariesTable();
-// populateDB();
-// populateDB2();
+populateDB();
+populateDBItineraries();

@@ -7,4 +7,8 @@ const connection = mysql.createConnection({
   database: "busIntegration",
 });
 
+connection.on("error", (error) => {
+  throw error;
+});
+
 exports.connection = connection;
