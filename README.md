@@ -14,9 +14,9 @@ Para popular o banco de dados basta rodar o comando `npm run fetch-db`
 
 #### bus-lines
 
-[GET] - "/" - Retorna toda a lista de linhas de ônibus da api fornecida
+[GET] - "/" - Retorna toda a lista de linhas de ônibus
 
-[GET] - "/:id" - Retorna uma linha de ônibus inserida no banco de dados
+[GET] - "/name?name=Nome Da Linha" - Retorna todas as linhas com aquele nome
 
 [POST] - "/" - Insere uma linha de ônibus dentro do banco de dados sendo o corpo da requisição:
 
