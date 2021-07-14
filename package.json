@@ -1,0 +1,22 @@
+{
+  "name": "integration-bus-backend",
+  "version": "1.0.0",
+  "description": "Clonar o projeto\r Rodar `npm install`\r Rodar `npm start` o servidor ficará disponível na porta 3001 no endereço http://localhost:3001",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/server.js",
+    "fetch-db": "node database/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.2.5",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.12"
+  }
+}
