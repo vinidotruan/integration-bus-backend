@@ -27,21 +27,65 @@ router.get("/name", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const data = req.body;
+  const selectSQL = `SELECT * FROM busLines WHERE id = '${data.id}';`;
 
-  const response = mysql.query(
+  const [rows, fields] = await mysqlPromise.query(selectSQL);
+  if (rows) {
+    const oldData = rows[0];
+    if (Object.entries(oldData).toString() != Object.entries(data).toString()) {
+      const updateResult = mysql.query(
+        `UPDATE busLines SET codigo = ?, nome = ? WHERE id = ?`,
+        [data.codigo, data.nome, data.id],
+        (err, result) => {
+          if (err) {
+            res.status(500).send({
+              response: { message: "Error on update" },
+            });
+            return;
+          }
+          res.status(200).send({
+            response: { message: "Updated" },
+          });
+          return;
+        }
+      );
+      return;
+    }
+  }
+  mysql.query(
     insertSQL,
     [data.codigo, data.id, data.nome],
     (error, result, fields) => {
       if (error) {
         if (error.code == "ER_DUP_ENTRY") {
+          res.status(500).send({
+            response: error,
+          });
+          return;
         }
-        res.status(500).send({
-          response: error,
-        });
+        return;
       }
-      res.status(200).send({ response: response.rows });
+      res.status(200).send({ response: result });
+      return;
     }
   );
+});
+
+router.delete("/:id", async (req, res) => {
+  const data = req.params.id;
+
+  mysql.query(`DELETE FROM busLines WHERE id = ${data}`, (err, result) => {
+    if (err) {
+      res.status(500).send({
+        response: err,
+      });
+    }
+    res.status(200).send({
+      response: {
+        message: "Deleted",
+      },
+    });
+  });
 });
 
 module.exports = router;

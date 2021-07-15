@@ -18,7 +18,7 @@ Para popular o banco de dados basta rodar o comando `npm run fetch-db`
 
 [GET] - "/name?name=Nome Da Linha" - Retorna todas as linhas com aquele nome
 
-[POST] - "/" - Insere uma linha de ônibus dentro do banco de dados sendo o corpo da requisição:
+[POST] - "/" - Insere ou atualiza uma linha de ônibus dentro do banco de dados sendo o corpo da requisição:
 
     {
     	"id": "09",
